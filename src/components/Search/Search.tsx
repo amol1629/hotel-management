@@ -53,7 +53,7 @@ const Search: FC<Props> = ({
 
         <div className='w-full md:1/3 lg:w-auto mb-4 md:mb-0'>
           <label className='block text-sm font-medium mb-2 text-black'>
-            Search
+            Search Amol
           </label>
           <input
             type='search'

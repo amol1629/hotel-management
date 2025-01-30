@@ -13,6 +13,8 @@ const RoomCard: FC<Props> = props => {
     room: { coverImage, name, price, type, description, slug, isBooked },
   } = props;
 
+  
+
   return (
     <div className='rounded-xl w-72 mb-10 mx-auto md:mx-0 overflow-hidden text-black'>
       <div className='h-60 overflow-hidden'>

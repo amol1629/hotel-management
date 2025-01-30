@@ -212,3 +212,19 @@ export async function getRoomReviews(roomId: string) {
 
   return result;
 }
+
+
+export async function getAllRoomReviews() {
+  const query = `*[_type == 'review']{
+    _createdAt,
+    _id,
+    text,
+    user -> {
+        name
+    },
+    userRating
+  }`;
+
+  const result = await sanityClient.fetch<Review[]>(query, {}, { cache: 'no-cache' });
+  return result;
+}
