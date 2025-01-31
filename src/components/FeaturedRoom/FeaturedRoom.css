@@ -1,0 +1,38 @@
+.perspective {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.group .preserve-3d {
+  transition: transform 0.7s ease-in-out;
+}
+
+.group:hover .preserve-3d {
+  transform: rotateY(180deg);
+}
+
+/* Fix for front side disappearing */
+.group .backface-hidden {
+  opacity: 1;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.group:hover .backface-hidden {
+  opacity: 0;
+}
+
+.group .rotate-y-180 {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.group:hover .rotate-y-180 {
+  opacity: 1;
+}

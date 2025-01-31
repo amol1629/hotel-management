@@ -1,0 +1,215 @@
+[
+	{
+		"name": "Elegant Suite",
+		"slug": "elegant-suite",
+		"description": "A luxurious suite with modern amenities and breathtaking views.",
+		"price": 200,
+		"discount": 15,
+		"images": [
+			"https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+			"https://images.unsplash.com/photo-1554995207-c18c203602cb",
+			"https://images.unsplash.com/photo-1576675782764-b5d0a2c7a6f3"
+		],
+		"coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+		"roomType": "Suite",
+		"dimensions": "500 sqft",
+		"numberOfBeds": 2,
+		"offeredAmenities": [
+			{ "name": "Free Wi-Fi", "icon": "wifi-icon.png" },
+			{ "name": "Air Conditioning", "icon": "ac-icon.png" },
+			{ "name": "Mini Bar", "icon": "minibar-icon.png" }
+		],
+		"isBooked": false,
+		"isFeatured": true
+	},
+	{
+		"name": "Cozy Deluxe Room",
+		"slug": "cozy-deluxe-room",
+		"description": "A cozy and comfortable room perfect for business and leisure travelers.",
+		"price": 150,
+		"discount": 10,
+		"images": [
+			"https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+			"https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg",
+			"https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
+		],
+		"coverImage": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+		"roomType": "Basic",
+		"dimensions": "350 sqft",
+		"numberOfBeds": 1,
+		"offeredAmenities": [
+			{ "name": "Free Breakfast", "icon": "breakfast-icon.png" },
+			{ "name": "Flat Screen TV", "icon": "tv-icon.png" },
+			{ "name": "Tea/Coffee Maker", "icon": "coffee-icon.png" }
+		],
+		"isBooked": true,
+		"isFeatured": false
+	},
+	{
+		"name": "Luxury Grand Room",
+		"slug": "luxury-grand-room",
+		"description": "A premium experience with elegant interiors and superior comfort.",
+		"price": 300,
+		"discount": 20,
+		"images": [
+			"https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+			"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+			"https://images.unsplash.com/photo-1507089947368-19c1da9775ae"
+		],
+		"coverImage": "https://images.unsplash.com/photo-1507089947368-19c1da9775ae",
+		"roomType": "Luxury",
+		"dimensions": "600 sqft",
+		"numberOfBeds": 3,
+		"offeredAmenities": [
+			{ "name": "Private Balcony", "icon": "balcony-icon.png" },
+			{ "name": "Jacuzzi", "icon": "jacuzzi-icon.png" },
+			{ "name": "24/7 Room Service", "icon": "room-service-icon.png" }
+		],
+		"isBooked": false,
+		"isFeatured": true
+	},
+	{
+		"name": "Modern Business Room",
+		"slug": "modern-business-room",
+		"description": "A sleek room equipped with all essentials for the modern business traveler.",
+		"price": 180,
+		"discount": 5,
+		"images": [
+			"https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg",
+			"https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+			"https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg"
+		],
+		"coverImage": "https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg",
+		"roomType": "Basic",
+		"dimensions": "400 sqft",
+		"numberOfBeds": 1,
+		"offeredAmenities": [
+			{ "name": "High-Speed Internet", "icon": "internet-icon.png" },
+			{ "name": "Work Desk", "icon": "desk-icon.png" },
+			{ "name": "Ergonomic Chair", "icon": "chair-icon.png" }
+		],
+		"isBooked": false,
+		"isFeatured": false
+	},
+	{
+		"name": "Cozy Single Room",
+		"slug": "cozy-single",
+		"description": "Perfect for solo travelers, this room offers a comfortable stay with essential amenities.",
+		"price": 1200,
+		"discount": 0,
+		"images": ["room1_1.jpg", "room1_2.jpg", "room1_3.jpg"],
+		"cover_image": "cover1.jpg",
+		"room_type": "Basic",
+		"dimensions": "12x10 ft",
+		"number_of_beds": 1,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" },
+			{ "name": "AC", "icon": "fas fa-snowflake" }
+		],
+		"is_booked": false,
+		"is_featured": false
+	},
+	{
+		"name": "Standard Double Room",
+		"slug": "standard-double",
+		"description": "Ideal for couples, this room features a double bed and a relaxing atmosphere.",
+		"price": 1800,
+		"discount": 5,
+		"images": ["room2_1.jpg", "room2_2.jpg", "room2_3.jpg"],
+		"cover_image": "cover2.jpg",
+		"room_type": "Basic",
+		"dimensions": "15x12 ft",
+		"number_of_beds": 2,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" },
+			{ "name": "AC", "icon": "fas fa-snowflake" },
+			{ "name": "Coffee/Tea Maker", "icon": "fas fa-coffee" }
+		],
+		"is_booked": true,
+		"is_featured": false
+	},
+	{
+		"name": "Deluxe Queen Room",
+		"slug": "deluxe-queen",
+		"description": "Enjoy a spacious stay in our deluxe queen room, featuring a comfortable queen-size bed.",
+		"price": 2500,
+		"discount": 10,
+		"images": ["room3_1.jpg", "room3_2.jpg", "room3_3.jpg"],
+		"cover_image": "cover3.jpg",
+		"room_type": "Suite",
+		"dimensions": "18x15 ft",
+		"number_of_beds": 1,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" },
+			{ "name": "AC", "icon": "fas fa-snowflake" },
+			{ "name": "Mini Fridge", "icon": "fas fa-fridge" },
+			{ "name": "City View", "icon": "fas fa-city" }
+		],
+		"is_booked": false,
+		"is_featured": true
+	},
+	{
+		"name": "Luxury King Suite",
+		"slug": "luxury-king",
+		"description": "Experience ultimate luxury in our king suite, complete with a king-size bed and premium amenities.",
+		"price": 4000,
+		"discount": 0,
+		"images": ["room4_1.jpg", "room4_2.jpg", "room4_3.jpg"],
+		"cover_image": "cover4.jpg",
+		"room_type": "Luxary",
+		"dimensions": "25x20 ft",
+		"number_of_beds": 1,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" },
+			{ "name": "AC", "icon": "fas fa-snowflake" },
+			{ "name": "Mini Fridge", "icon": "fas fa-fridge" },
+			{ "name": "Jacuzzi", "icon": "fas fa-hot-tub" },
+			{ "name": "Balcony", "icon": "fas fa-tree" }
+		],
+		"is_booked": true,
+		"is_featured": true
+	},
+	{
+		"name": "Family Suite",
+		"slug": "family-suite",
+		"description": "Perfect for families, this suite offers ample space and multiple beds.",
+		"price": 3500,
+		"discount": 15,
+		"images": ["room5_1.jpg", "room5_2.jpg", "room5_3.jpg"],
+		"cover_image": "cover5.jpg",
+		"room_type": "Suite",
+		"dimensions": "22x18 ft",
+		"number_of_beds": 2,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" },
+			{ "name": "AC", "icon": "fas fa-snowflake" },
+			{ "name": "Kitchenette", "icon": "fas fa-utensils" }
+		],
+		"is_booked": false,
+		"is_featured": false
+	},
+
+	{
+		"name": "Budget Twin Room",
+		"slug": "budget-twin",
+		"description": "Affordable twin room with basic amenities.",
+		"price": 1000,
+		"discount": 0,
+		"images": ["room20_1.jpg", "room20_2.jpg", "room20_3.jpg"],
+		"cover_image": "cover20.jpg",
+		"room_type": "Basic",
+		"dimensions": "14x11 ft",
+		"number_of_beds": 2,
+		"offered_amenities": [
+			{ "name": "Wi-Fi", "icon": "fas fa-wifi" },
+			{ "name": "TV", "icon": "fas fa-tv" }
+		],
+		"is_booked": false,
+		"is_featured": false
+	}
+]
