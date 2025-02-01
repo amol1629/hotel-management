@@ -140,17 +140,17 @@ const FeaturedRooms: FC = () => {
 											title={room.description}
 											placement="top"
 										>
-											<p>
+											<div>
 												{room?.description && (
 													<p>
 														{room.description.slice(
 															0,
-															100
+															50
 														)}
 														...
 													</p>
 												)}
-											</p>
+											</div>
 										</Tooltip>
 									</div>
 

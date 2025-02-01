@@ -23,7 +23,7 @@
     "chart.js": "^4.4.0",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.4",
-    "next": "13.5.4",
+    "next": "^13.5.4",
     "next-auth": "^4.24.11",
     "next-auth-sanity": "^1.5.3",
     "next-sanity": "^5.5.4",

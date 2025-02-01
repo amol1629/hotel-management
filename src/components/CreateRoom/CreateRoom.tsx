@@ -193,18 +193,20 @@ const CreateRoomForm = () => {
 							/>
 						</div>
 					))}
-					<button
-						type="button"
-						onClick={() =>
-							setAmenities([
-								...amenities,
-								{ icon: "", amenity: "" },
-							])
-						}
-						className="btn"
-					>
-						Add Amenity
-					</button>
+					<div>
+						<button
+							type="button"
+							onClick={() =>
+								setAmenities([
+									...amenities,
+									{ icon: "", amenity: "" },
+								])
+							}
+							className="btn"
+						>
+							Add Amenity
+						</button>
+					</div>
 				</div>
 
 				<div>

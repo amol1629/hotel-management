@@ -32,9 +32,11 @@ const RoomCard: FC<Props> = (props) => {
 					<p className="font-bold text-green-500">$ {price}</p>
 				</div>
 
-				<p className="pt-2 text-xs text-orange-400">
-					{type.toUpperCase()} Room
-				</p>
+				<div>
+					<p className="pt-2 text-xs text-orange-400">
+						{type.toUpperCase()} Room
+					</p>
+				</div>
 
 				<Tooltip title={description} placement="top">
 					<p className="pt-3 pb-6">{description.slice(0, 100)}...</p>

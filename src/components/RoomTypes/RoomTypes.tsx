@@ -47,11 +47,16 @@ const RoomTypes: FC = () => {
 							p-3 bg-white bg-opacity-20 backdrop-blur-sm dark:bg-transparent hover:scale-105 transition-all duration-300 hover:shadow-lg"
 						>
 							<div className="text-orange-400 font-bold text-lg sm:text-xl lg:text-2xl">
-								<CountUpNumber duration={4000} endValue={room.value} />
+								<CountUpNumber
+									duration={4000}
+									endValue={room.value}
+								/>
 							</div>
-							<p className="text-sm font-bold sm:text-md lg:text-lg text-center mt-4 text-white">
-								{room.label}
-							</p>
+							<div>
+								<p className="text-sm font-bold sm:text-md lg:text-lg text-center mt-4 text-white">
+									{room.label}
+								</p>
+							</div>
 						</div>
 					))}
 				</div>

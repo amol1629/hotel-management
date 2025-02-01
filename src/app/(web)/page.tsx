@@ -18,7 +18,7 @@ const Home = async () => {
 		<>
 			<HeroSection />
 
-			<CreateRoomForm />
+			{/* <CreateRoomForm /> */}
 			<RoomTypes />
 
 			<Facilities />
