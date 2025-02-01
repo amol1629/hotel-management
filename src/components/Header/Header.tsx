@@ -50,22 +50,14 @@ const Header = () => {
 	}, [darkTheme, setDarkTheme]);
 
 	const userImage = session?.user?.image ? (
-<<<<<<< HEAD
 		<div className="w-10 h-10 rounded-full overflow-hidden border-2 hover:border-orange-400">
-=======
-		<div className="w-10 h-10 rounded-full overflow-hidden">
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 			<Tooltip title={session.user.name} placement="top">
 				<Image
 					src={session.user.image}
 					alt={session.user.name!}
 					width={40}
 					height={40}
-<<<<<<< HEAD
 					className="scale-animation img "
-=======
-					className="scale-animation img"
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 				/>
 			</Tooltip>
 		</div>
@@ -79,11 +71,7 @@ const Header = () => {
 	};
 
 	return (
-<<<<<<< HEAD
 		<header className="dark:sticky dark:top-0 dark:z-40  dark:bg-black dark:border dark:rounded-lg border-b border-b-white dark:border-white py-4 shadow-lg px-4 mx-auto text-xl flex flex-col md:flex-row items-center justify-between gap-4">
-=======
-		<header className="dark:bg-black dark:border dark:rounded-lg border-b border-b-white dark:border-white py-4 shadow-lg px-4 mx-auto text-xl flex flex-col md:flex-row items-center justify-between gap-4">
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 			<div className="flex items-center w-full md:w-auto">
 				<Link href="/">
 					<Image
@@ -165,7 +153,6 @@ const Header = () => {
 						key={link}
 						className="text-white hover:underline hover:-translate-y-2 duration-500 transition-all"
 					>
-<<<<<<< HEAD
 						{/* For the Home link, update it to go to root */}
 						<Link
 							href={
@@ -174,9 +161,6 @@ const Header = () => {
 						>
 							{link}
 						</Link>
-=======
-						<Link href={`/${link.toLowerCase()}`}>{link}</Link>
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 					</li>
 				))}
 
@@ -191,11 +175,7 @@ const Header = () => {
 						{session?.user ? (
 							userImage
 						) : (
-<<<<<<< HEAD
 							<FaUserCircle className="text-white  border-2 border-white cursor-pointer" />
-=======
-							<FaUserCircle className="cursor-pointer" />
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 						)}
 					</Link>
 				</li>

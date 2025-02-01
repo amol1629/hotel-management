@@ -19,20 +19,10 @@ const AllRoomReviews: FC = () => {
 
 	const { data, isLoading } = useSWR("get/hotelRooms", fetchData);
 
-<<<<<<< HEAD
 	// Handle loading and error states
 	if (loading) return <p>Loading reviews...</p>;
 	if (error) return <p>{error}</p>;
 
-=======
-	console.log("Reivew sdfasd : ", data);
-	console.log("roo m : ", rooms);
-
-	// Handle loading and error states
-	if (loading) return <p>Loading reviews...</p>;
-	if (error) return <p>{error}</p>;
-
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 	return (
 		<div className="rooms-container">
 			{rooms.length > 0 ? (
@@ -49,7 +39,6 @@ const AllRoomReviews: FC = () => {
 								reviews[room._id].map((review: Review) => (
 									<div
 										className="review-card bg-gray-100 dark:bg-gray-900 p-4 rounded-lg mb-4"
-<<<<<<< HEAD
 										key={review?._id}
 									>
 										<div className="flex items-center mb-2">
@@ -59,26 +48,11 @@ const AllRoomReviews: FC = () => {
 											<div className="ml-4 flex items-center text-tertiary-light text-lg">
 												<Rating
 													rating={review?.userRating}
-=======
-										key={review._id}
-									>
-										<div className="flex items-center mb-2">
-											<p className="font-semibold">
-												{review.user.name}
-											</p>
-											<div className="ml-4 flex items-center text-tertiary-light text-lg">
-												<Rating
-													rating={review.userRating}
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 												/>
 											</div>
 										</div>
 										<p className="text-gray-700 dark:text-gray-300">
-<<<<<<< HEAD
 											{review?.text}
-=======
-											{review.text}
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 										</p>
 									</div>
 								))

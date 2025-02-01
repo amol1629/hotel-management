@@ -9,11 +9,7 @@ import PageSearch from "@/components/PageSearch/PageSearch";
 import Rating from "@/components/Rating/Rating";
 import RoomReview from "@/components/RoomReview/RoomReview";
 import RoomTypes from "@/components/RoomTypes/RoomTypes";
-<<<<<<< HEAD
 import { getFeaturedRooms } from "@/libs/apis";
-=======
-import { getFeaturedRoom } from "@/libs/apis";
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 
 const Home = async () => {
 	const featuredRoom = await getFeaturedRooms();
@@ -21,7 +17,6 @@ const Home = async () => {
 	return (
 		<>
 			<HeroSection />
-<<<<<<< HEAD
 
 			{/* <CreateRoomForm /> */}
 			<RoomTypes />
@@ -30,12 +25,6 @@ const Home = async () => {
 			{/* <PageSearch /> */}
 			{/* <AllRoomReviews /> */}
 			<FeaturedRoom />
-=======
-			<RoomTypes />
-			{/* <PageSearch /> */}
-			<AllRoomReviews />
-			<FeaturedRoom featuredRoom={featuredRoom} />
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 
 			<Gallery />
 			<NewsLetter />

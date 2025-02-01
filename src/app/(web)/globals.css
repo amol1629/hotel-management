@@ -3,180 +3,150 @@
 @tailwind utilities;
 
 .img {
-  @apply object-cover w-full h-full;
+	@apply object-cover w-full h-full;
 }
 /* Prevent horizontal overflow */
 body {
-   background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww');
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-attachment: fixed; /* Makes the background fixed while scrolling */
-  margin: 0;
-  padding: 0;
-  min-height: 100vh; /* Ensures the background covers the full viewport height */
-  width: 100%; /* Ensures the body does not overflow horizontally */
-  position: relative; /* Needed for the overlay */
-  transition: background-image 0.5s ease-in-out;
-  -webkit-transition: background-image 0.5s ease-in-out;
-  -moz-transition: background-image 0.5s ease-in-out;
-  -ms-transition: background-image 0.5s ease-in-out;
-  -o-transition: background-image 0.5s ease-in-out;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+	background-image: url("https://images.unsplash.com/photo-1611892440504-42a792e24d32?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww");
+	background-size: cover; /* Ensures the image covers the entire background */
+	background-position: center; /* Centers the image */
+	background-repeat: no-repeat; /* Prevents the image from repeating */
+	background-attachment: fixed; /* Makes the background fixed while scrolling */
+	margin: 0;
+	padding: 0;
+	min-height: 100vh; /* Ensures the background covers the full viewport height */
+	width: 100%; /* Ensures the body does not overflow horizontally */
+	position: relative; /* Needed for the overlay */
+	transition: background-image 0.5s ease-in-out;
+	-webkit-transition: background-image 0.5s ease-in-out;
+	-moz-transition: background-image 0.5s ease-in-out;
+	-ms-transition: background-image 0.5s ease-in-out;
+	-o-transition: background-image 0.5s ease-in-out;
+	overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-<<<<<<< HEAD
-=======
-body {
-  background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww');
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-attachment: fixed; /* Makes the background fixed while scrolling */
-  margin: 0;
-  padding: 0;
-  min-height: 100vh; /* Ensures the background covers the full viewport height */
-  position: relative; /* Needed for the overlay */
-}
-
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
 /* Dark Overlay */
 body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-<<<<<<< HEAD
-=======
-  width: 100%;
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
-  z-index: -1; /* Places the overlay behind the content */
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+	z-index: -1; /* Places the overlay behind the content */
 }
 
 /* Optional: Add a subtle blur effect to the background */
 body::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-<<<<<<< HEAD
-=======
-  width: 100%;
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
-  height: 100%;
-  backdrop-filter: blur(4px); /* Adds a subtle blur effect */
-  z-index: -1; /* Places the blur effect behind the content */
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	backdrop-filter: blur(4px); /* Adds a subtle blur effect */
+	z-index: -1; /* Places the blur effect behind the content */
 }
 
-<<<<<<< HEAD
 /* Prevent horizontal scrolling due to elements overflowing */
-html, body {
-  overflow-x: hidden; /* Prevent horizontal scroll */
-=======
-/* Smooth transition for background changes */
+html,
 body {
-  transition: background-image 0.5s ease-in-out;
->>>>>>> 57a659ebe91566217b6c13a251cbb1b4fec559fd
+	overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .scale-animation {
-  @apply hover:scale-125 transition-all duration-700;
+	@apply hover:scale-125 transition-all duration-700;
 }
 
 .btn-primary {
-  @apply px-6 md:px-[50px] lg:px-[72px] py-2 md:py-5 bg-primary rounded-lg md:rounded-2xl shadow-sm shadow-primary text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+	@apply px-6 md:px-[50px] lg:px-[72px] py-2 md:py-5 bg-primary rounded-lg md:rounded-2xl shadow-sm shadow-primary text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .btn-tertiary {
-  @apply px-6 md:px-[50px] lg:px-[72px] py-2 md:py-5 bg-tertiary-light rounded-lg md:rounded-2xl shadow-sm shadow-tertiary-light text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
+	@apply px-6 md:px-[50px] lg:px-[72px] py-2 md:py-5 bg-tertiary-light rounded-lg md:rounded-2xl shadow-sm shadow-tertiary-light text-white font-bold text-base md:text-xl hover:scale-110 duration-300 transition-all;
 }
 
 .font-heading {
-  @apply font-medium md:font-semibold md:text-6xl text-3xl;
+	@apply font-medium md:font-semibold md:text-6xl text-3xl;
 }
 
 .font-normal {
-  @apply text-sm md:text-base;
+	@apply text-sm md:text-base;
 }
 
 .perspective {
-  perspective: 1200px;
+	perspective: 1200px;
 }
 
 .preserve-3d {
-  transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 
 .backface-hidden {
-  backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 .group .preserve-3d {
-  transition: transform 0.7s ease-in-out;
+	transition: transform 0.7s ease-in-out;
 }
 
 .group:hover .preserve-3d {
-  transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 /* Fix for front side disappearing */
 .group .backface-hidden {
-  opacity: 1;
-  transition: opacity 0.7s ease-in-out;
+	opacity: 1;
+	transition: opacity 0.7s ease-in-out;
 }
 
 .group:hover .backface-hidden {
-  opacity: 0;
+	opacity: 0;
 }
 
 .group .rotate-y-180 {
-  transform: rotateY(180deg);
-  opacity: 0;
+	transform: rotateY(180deg);
+	opacity: 0;
 }
 
 .group:hover .rotate-y-180 {
-  opacity: 1;
+	opacity: 1;
 }
 
 /* Glassy effect */
 .bg-opacity-10 {
-  background-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .backdrop-blur-lg {
-  backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
 }
-
-
 
 /* Basic Tailwind CSS styling for the form */
 .input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 .btn {
-  background-color: #3490dc;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 4px;
-  cursor: pointer;
+	background-color: #3490dc;
+	color: white;
+	padding: 12px 16px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .btn:disabled {
-  background-color: #ccc;
+	background-color: #ccc;
 }
 
 .checkbox {
-  margin-right: 8px;
+	margin-right: 8px;
 }
 
 .error {
-  color: red;
-  font-size: 14px;
+	color: red;
+	font-size: 14px;
 }
