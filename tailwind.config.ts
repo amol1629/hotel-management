@@ -28,6 +28,7 @@ const config: Config = {
 			colors: {
 				primary: "#038C7F",
 				secondary: "#F2C641",
+				gold: "#FFD700",
 				tertiary: {
 					dark: "#F27405",
 					light: "#F2C641",
