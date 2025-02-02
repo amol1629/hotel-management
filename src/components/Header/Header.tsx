@@ -72,15 +72,21 @@ const Header = () => {
 
 	return (
 		<header className="dark:sticky dark:top-0 dark:z-40  dark:bg-black dark:border dark:rounded-lg border-b border-b-white dark:border-white py-4 shadow-lg px-4 mx-auto text-xl flex flex-col md:flex-row items-center justify-between gap-4">
-			<div className="flex items-center w-full md:w-auto">
-				<Link href="/">
+			<div className="f">
+				<Link
+					href="/"
+					className="flex items-center w-full md:w-auto gap-4"
+				>
 					<Image
 						alt="gallery"
-						className="rounded-full  "
-						src="https://images.dtravel.com/profile/81d6cbfb-68d6-4ecc-90a3-7202e81a0d5a/9508a74e-a476-44f6-8aef-b2c437f6fa3f/logo/838"
-						width={260}
-						height={140}
+						className=" rounded-full h-16 w-16"
+						src="/images/main-logo.jpg"
+						width={40}
+						height={40}
 					/>
+					<h1 className="font-bold text-orange-50 text-3xl">
+						Stay Zen
+					</h1>
 				</Link>
 			</div>
 

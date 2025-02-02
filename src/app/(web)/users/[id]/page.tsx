@@ -125,7 +125,7 @@ const UserDetails = () => {
 
 				<div className="md:col-span-8 lg:col-span-9">
 					<div className="flex items-center">
-						<h5 className="text-2xl font-bold mr-3">
+						<h5 className="text-2xl font-bold mr-3 text-white">
 							Hello, {userData.name}
 						</h5>
 					</div>
