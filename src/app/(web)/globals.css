@@ -73,6 +73,8 @@ body {
 	@apply text-sm md:text-base;
 }
 
+
+/* Featured Room CSS Starts Here */
 .perspective {
 	perspective: 1200px;
 }
@@ -120,6 +122,8 @@ body {
 .backdrop-blur-lg {
 	backdrop-filter: blur(12px);
 }
+/* Featured Room END Starts Here */
+
 
 /* Basic Tailwind CSS styling for the form */
 .input {
@@ -149,4 +153,19 @@ body {
 .error {
 	color: red;
 	font-size: 14px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
 }
