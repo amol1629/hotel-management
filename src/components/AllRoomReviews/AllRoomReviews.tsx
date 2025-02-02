@@ -1,70 +1,100 @@
 "use client";
-
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import { Review } from "@/models/review";
+import { Room } from "@/models/room";
 import Rating from "../Rating/Rating";
-import useSWR from "swr";
 import { getRooms } from "@/libs/apis";
 
 const AllRoomReviews: FC = () => {
-	const [rooms, setRooms] = useState<any[]>([]); // State to store all rooms data
-	const [reviews, setReviews] = useState<any>({}); // State to store reviews per room
-	const [loading, setLoading] = useState<boolean>(true);
+	const [rooms, setRooms] = useState<Room[]>([]);
+	const [reviews, setReviews] = useState<Review[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
-	async function fetchData() {
-		return getRooms();
-	}
+	// Step 1: Fetch all rooms
+	useEffect(() => {
+		const fetchRooms = async () => {
+			try {
+				const rooms = await getRooms();
+				setRooms(rooms);
+			} catch (error) {
+				setError("Failed to fetch rooms.");
+				console.error(error);
+			}
+		};
 
-	const { data, isLoading } = useSWR("get/hotelRooms", fetchData);
+		fetchRooms();
+	}, []);
+
+	// Step 2: Fetch reviews for all rooms
+	useEffect(() => {
+		if (rooms.length === 0) return;
+
+		const fetchAllReviews = async () => {
+			setIsLoading(true);
+			setError(null);
+
+			try {
+				// Fetch reviews for each room concurrently
+				const reviewPromises = rooms.map(async (room) => {
+					const { data } = await axios.get<Review[]>(
+						`/api/room-reviews/${room._id}`
+					);
+					return data;
+				});
+
+				// Wait for all reviews to be fetched
+				const allReviews = await Promise.all(reviewPromises);
+
+				// Flatten the array of arrays into a single array of reviews
+				const flattenedReviews = allReviews.flat();
+				setReviews(flattenedReviews);
+			} catch (error) {
+				setError("Failed to fetch reviews.");
+				console.error(error);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		fetchAllReviews();
+	}, [rooms]);
 
 	// Handle loading and error states
-	if (loading) return <p>Loading reviews...</p>;
-	if (error) return <p>{error}</p>;
+	if (isLoading) {
+		return <div className="text-white">Loading reviews...</div>;
+	}
+
+	if (error) {
+		return <div className="text-red-500">{error}</div>;
+	}
 
 	return (
-		<div className="rooms-container">
-			{rooms.length > 0 ? (
-				rooms.map((room) => (
-					<div key={room._id} className="room-section mb-8">
-						<h2 className="text-xl font-semibold mb-4">
-							{room.label} Reviews
-						</h2>
+		<div>
+			<h1 className="text-2xl font-bold text-white mb-6">All Reviews</h1>
+			<div className="flex flex-wrap gap-4">
+				{reviews.map((review) => (
+					<div
+						className="bg-opacity-10 backdrop-blur-lg p-6 mb-4 w-full md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto rounded-2xl shadow-lg dark:bg-gray-900"
+						key={review._id}
+					>
+						<div className="font-semibold mb-4 ">
+							<p className="text-purple-300">
+								{review?.user?.name}
+							</p>
+						</div>
 
-						{/* Display reviews for each room */}
-						<div className="reviews-container">
-							{reviews[room._id] &&
-							reviews[room._id].length > 0 ? (
-								reviews[room._id].map((review: Review) => (
-									<div
-										className="review-card bg-gray-100 dark:bg-gray-900 p-4 rounded-lg mb-4"
-										key={review?._id}
-									>
-										<div className="flex items-center mb-2">
-											<p className="font-semibold">
-												{review?.user?.name}
-											</p>
-											<div className="ml-4 flex items-center text-tertiary-light text-lg">
-												<Rating
-													rating={review?.userRating}
-												/>
-											</div>
-										</div>
-										<p className="text-gray-700 dark:text-gray-300">
-											{review?.text}
-										</p>
-									</div>
-								))
-							) : (
-								<p>No reviews available for this room.</p>
-							)}
+						<div className="text-white italic text-sm">
+							{review?.text}
+						</div>
+
+						<div className="mt-4 flex items-center text-tertiary-light text-lg">
+							<Rating rating={review?.userRating} />
 						</div>
 					</div>
-				))
-			) : (
-				<p>No rooms available.</p>
-			)}
+				))}
+			</div>
 		</div>
 	);
 };

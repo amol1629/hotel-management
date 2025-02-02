@@ -9,13 +9,12 @@ interface Developer {
 	image: string;
 }
 
-
-
 const ContactPage: FC = () => {
 	// Background Image and Room Data inside the component
 	const backgroundImageUrl = "/images/cover-image-2.png";
 	return (
-		<div className="relative flex items-center justify-center  py-12 min-h-[calc(100vh-80px)] overflow-hidden">
+		<div className="relative flex items-center justify-center py-12 min-h-[calc(100vh-80px)] overflow-hidden">
+			{/* Background Image */}
 			<div
 				className="absolute inset-0 z-0"
 				style={{
@@ -31,6 +30,7 @@ const ContactPage: FC = () => {
 			{/* Dark Overlay */}
 			<div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-2xl"></div>
 
+			{/* Content */}
 			<div className="relative z-20 container mx-auto px-4">
 				<h1 className="text-4xl font-bold text-center text-white mb-12 animate-fade-in-down">
 					Meet Our Developers
@@ -39,18 +39,24 @@ const ContactPage: FC = () => {
 					{developers.map((developer, index) => (
 						<div
 							key={index}
-							className=" rounded-2xl shadow-2xl border hover:border-orange-400 overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl animate-fade-in-up"
+							className="rounded-2xl shadow-2xl border hover:border-orange-400 overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl animate-fade-in-up"
 						>
-							{/* Use the Next.js Image component */}
-							<Image
-								src={developer.image}
-								alt={developer.name}
-								width={500} // Set appropriate width
-								height={300} // Set appropriate height
-								className="w-full h-64 object-cover rounded-2xl"
-								priority // Optional: Preload important images
-							/>
-							<div className="p-6 dark:bg-gray-800 bg-opacity-10 backdrop-blur-lg  rounded-2xl text-center">
+							{/* Circular Image */}
+							<div className="flex justify-center my-8">
+								<div className="w-80 h-80 rounded-full overflow-hidden border-4 border-orange-400">
+									<Image
+										src={developer.image}
+										alt={developer.name}
+										width={160} // Match the width of the container
+										height={160} // Match the height of the container
+										className="w-full h-full object-cover"
+										priority // Optional: Preload important images
+									/>
+								</div>
+							</div>
+
+							{/* Developer Details */}
+							<div className="p-6 dark:bg-gray-800 bg-opacity-10 backdrop-blur-lg rounded-2xl text-center">
 								<h2 className="text-2xl font-bold text-gold">
 									{developer.name}
 								</h2>
@@ -64,6 +70,8 @@ const ContactPage: FC = () => {
 						</div>
 					))}
 				</div>
+
+				{/* Contact Information */}
 				<div className="mt-12 text-center animate-fade-in-up">
 					<p className="text-white text-lg">
 						Interested in working with us? Reach out at{" "}
