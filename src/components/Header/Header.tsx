@@ -85,7 +85,7 @@ const Header = () => {
 						height={40}
 					/>
 					<h1 className="font-bold text-orange-50 text-3xl">
-						Stay Zen
+						Zen Oasis
 					</h1>
 				</Link>
 			</div>

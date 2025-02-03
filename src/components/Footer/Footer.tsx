@@ -24,7 +24,7 @@ const Footer = () => {
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 					{/* About Section */}
 					<div className="space-y-4 transform transition-transform hover:scale-105">
-						<h3 className="text-xl font-bold">Hotel Management</h3>
+						<h3 className="text-xl font-bold">Zen Oasis</h3>
 						<p className="text-gray-300">
 							Your trusted partner in luxury and comfort. We
 							provide the best services for your stay.
