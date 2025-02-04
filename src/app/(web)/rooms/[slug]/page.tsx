@@ -50,7 +50,8 @@ const RoomDetails = () => {
 		throw new Error("Cannot fetch data");
 	if (!room) return <LoadingSpinner />;
 
-
+	// Debugging: Log images to console
+	console.log("Room Images:", room.images);
 
 	const calcMinCheckoutDate = () => {
 		if (checkinDate) {
@@ -120,7 +121,7 @@ const RoomDetails = () => {
 	};
 
 	return (
-		<div className="relative overflow-hidden rounded-2xl my-6">
+		<div className="relative overflow-hidden rounded-2xl">
 			{/* Blurred Background */}
 			<div
 				className="absolute inset-0 z-0"
@@ -135,7 +136,7 @@ const RoomDetails = () => {
 			></div>
 
 			{/* Dark Overlay */}
-			<div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+			<div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
 
 			{/* Image Slider */}
 			<div className="relative z-20 w-full h-[400px] md:h-[600px] overflow-hidden">
@@ -278,7 +279,7 @@ const RoomDetails = () => {
 								<h2 className="text-3xl text-gold font-bold mb-6">
 									Customer Reviews
 								</h2>
-								<RoomReview roomId={room?._id} />
+								<RoomReview roomId={room._id} />
 							</div>
 						</div>
 					</div>
@@ -287,7 +288,7 @@ const RoomDetails = () => {
 					<div className="md:col-span-4">
 						<div className="sticky top-10 animate-fade-in">
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-green-400  hover:border-orange-400"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border-2 hover:border-orange-400"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
