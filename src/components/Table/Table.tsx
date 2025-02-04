@@ -28,8 +28,8 @@ const Table: FC<Props> = ({ bookingDetails, setRoomId, toggleRatingModal }) => {
 	};
 
 	return (
-		<div className="overflow-x-auto   rounded-2xl shadow-lg ">
-			<table className="relative overflow-hidden  p-4 w-full text-sm text-center text-white">
+		<div className="  rounded-2xl shadow-lg ">
+			<table className="relative overflow-x-auto overflow-y-hidden  p-4 w-full text-sm text-center text-white">
 				{/* Blurred Background */}
 				<div
 					className="absolute inset-0 z-0"
