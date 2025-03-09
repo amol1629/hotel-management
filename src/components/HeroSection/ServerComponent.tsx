@@ -73,7 +73,6 @@ export const HeroSection = () => {
 	);
 };
 
-
 export const section2 = (
 	<div className="md:grid hidden gap-8 grid-cols-1">
 		<div className="rounded-2xl overflow-hidden">
