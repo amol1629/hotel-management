@@ -32,24 +32,27 @@ const ContactPage: FC = () => {
 
 			{/* Content */}
 			<div className="relative z-20 container mx-auto px-4">
-				<h1 className="text-4xl font-bold text-center text-white mb-12 animate-fade-in-down">
+				{/* <h1 className="text-4xl font-bold text-center text-white mb-12 animate-fade-in-down">
 					Meet Our Developers
+				</h1> */}
+				<h1 className="text-4xl font-bold text-center text-white mb-12 animate-fade-in-down">
+					Meet Our <span className="text-orange-500">Developers</span>
 				</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{developers.map((developer, index) => (
 						<div
 							key={index}
-							className="rounded-2xl shadow-2xl border hover:border-orange-400 overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl animate-fade-in-up"
+							className="rounded-2xl shadow-2xl border hover:border-orange-400 overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl animate-fade-in-up duration-300 ease-in-out"
 						>
 							{/* Circular Image */}
 							<div className="flex justify-center my-8">
-								<div className="w-80 h-80 rounded-full overflow-hidden border-4 border-orange-400">
+								<div className="w-72 h-72 rounded-full overflow-hidden border-4 border-orange-400">
 									<Image
 										src={developer.image}
 										alt={developer.name}
-										width={160} // Match the width of the container
-										height={160} // Match the height of the container
-										className="w-full h-full object-cover"
+										width={120} // Match the width of the container
+										height={120} // Match the height of the container
+										className="w-full h-full object-center"
 										priority // Optional: Preload important images
 									/>
 								</div>
@@ -60,8 +63,8 @@ const ContactPage: FC = () => {
 								<h2 className="text-2xl font-bold text-gold">
 									{developer.name}
 								</h2>
-								<p className="text-sm text-white">
-									{developer.role}
+								<p className="text-sm my-2 text-orange-500">
+									({developer.role})
 								</p>
 								<p className="mt-4 text-white">
 									{developer.description}

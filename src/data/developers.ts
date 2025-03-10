@@ -11,43 +11,42 @@ export const developers: Developer[] = [
 		name: "Karishma Sonule",
 		role: "Frontend Developer",
 		description:
-			"Passionate about building responsive and user-friendly web applications.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Specializes in creating visually appealing and highly interactive user interfaces using modern front-end frameworks. ",
+		image: "/images/Karishma_Sonule.jpeg",
 	},
 	{
 		name: "Jayshree Mulankar",
 		role: "Backend Developer",
 		description:
-			"Experienced in building scalable and secure server-side applications.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Expert in building efficient and secure server-side applications with a strong focus on database management and API development.",
+		image: "/images/Jayshree_Mulankar.jpeg",
 	},
 	{
 		name: "Shravani Wandhare",
 		role: "Full Stack Developer",
 		description:
-			"Skilled in both frontend and backend development, with a focus on modern web technologies.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Passionate about developing seamless web applications by integrating front-end designs with robust back-end functionality.",
+		image: "/images/Shravani_Wandhare.jpeg",
 	},
-
 	{
 		name: "Rutuja Panchabudhe",
 		role: "Full Stack Developer",
 		description:
-			"Skilled in both frontend and backend development, with a focus on modern web technologies.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Experienced in both client-side and server-side technologies, with a keen interest in performance optimization and scalable solutions.",
+		image: "/images/Rutuja_Panchbudhe.jpeg",
 	},
 	{
 		name: "Aakansha Tembhare",
 		role: "Full Stack Developer",
 		description:
-			"Skilled in both frontend and backend development, with a focus on modern web technologies.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Combines strong problem-solving skills with expertise in front-end and back-end technologies to build high-performance applications.",
+		image: "/images/Akanksha_Tembhare.jpeg",
 	},
 	{
 		name: "Pooja Vaidya",
 		role: "Full Stack Developer",
 		description:
-			"Skilled in both frontend and backend development, with a focus on modern web technologies.",
-		image: "https://images.unsplash.com/photo-1441015401724-70d16b783f5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Real image
+			"Enthusiastic about creating full-fledged applications with a focus on usability, security, and efficiency.",
+		image: "/images/Pooja_Vaidya.jpg",
 	},
 ];

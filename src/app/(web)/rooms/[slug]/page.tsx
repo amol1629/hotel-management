@@ -37,6 +37,7 @@ const RoomDetails = () => {
 	const params = useParams();
 	const slug = params?.slug as string;
 
+	const [isPaymentPageLoading, setIsPaymentPageLoading] = useState(false);
 	const [checkinDate, setCheckinDate] = useState<Date | null>(null);
 	const [checkoutDate, setCheckoutDate] = useState<Date | null>(null);
 	const [adults, setAdults] = useState(1);
@@ -45,13 +46,14 @@ const RoomDetails = () => {
 	const fetchRoom = async () => getRoom(slug);
 	const { data: room, error, isLoading } = useSWR("/api/room", fetchRoom);
 
+	console.log("ISLoading : ", isLoading);
+
+	if (isLoading) return <LoadingSpinner />;
+
 	if (error) throw new Error("Cannot fetch data");
 	if (typeof room === "undefined" && !isLoading)
 		throw new Error("Cannot fetch data");
 	if (!room) return <LoadingSpinner />;
-
-	// Debugging: Log images to console
-	console.log("Room Images:", room.images);
 
 	const calcMinCheckoutDate = () => {
 		if (checkinDate) {
@@ -73,6 +75,8 @@ const RoomDetails = () => {
 		const stripe = await getStripe();
 
 		try {
+			setIsPaymentPageLoading(true);
+			console.log("Loading...");
 			const { data: stripeSession } = await axios.post("/api/stripe", {
 				checkinDate,
 				checkoutDate,
@@ -91,7 +95,10 @@ const RoomDetails = () => {
 					toast.error("Payment failed. Please try again.");
 				}
 			}
+			setIsPaymentPageLoading(false);
 		} catch (error: any) {
+			setIsPaymentPageLoading(false);
+
 			if (!error.response) {
 				toast.error(
 					"Network error. Please check your internet connection."
@@ -113,6 +120,10 @@ const RoomDetails = () => {
 		}
 	};
 
+	console.log("ISLoading : ", isLoading);
+
+	// if (isPaymentPageLoading) return <LoadingSpinner />;
+
 	const calcNumDays = () => {
 		if (!checkinDate || !checkoutDate) return;
 		const timeDiff = checkoutDate.getTime() - checkinDate.getTime();
@@ -123,6 +134,7 @@ const RoomDetails = () => {
 	return (
 		<div className="relative overflow-hidden rounded-2xl">
 			{/* Blurred Background */}
+
 			<div
 				className="absolute inset-0 z-0"
 				style={{
@@ -183,7 +195,7 @@ const RoomDetails = () => {
 
 							{/* Offered Amenities */}
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow hover:border hover:border-orange-400"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl border border-transparent  hover:border hover:border-orange-400 transition-all duration-300 ease-in-out"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
@@ -196,7 +208,7 @@ const RoomDetails = () => {
 									{room.offeredAmenities.map((amenity) => (
 										<div
 											key={amenity._key}
-											className="w-40  dark:bg-gray-800  text-center  hover:scale-105 transition-all  backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl  border hover:border-orange-400"
+											className="w-40  dark:bg-gray-800  text-center  hover:scale-105 transition-all  backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl  border hover:border-orange-400 duration-300 ease-linear"
 										>
 											<i
 												className={`fa-solid ${amenity?.icon} text-3xl mb-6 text-secondary`}
@@ -211,7 +223,7 @@ const RoomDetails = () => {
 
 							{/* Room Description */}
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow hover:border hover:border-orange-400 my-8"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl border border-transparent  hover:border hover:border-orange-400 my-8 transition-all duration-300 ease-in-out"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
@@ -227,7 +239,7 @@ const RoomDetails = () => {
 
 							{/* Safety and Hygiene */}
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow hover:border hover:border-orange-400 my-8"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl border border-transparent  hover:border hover:border-orange-400 my-8 transition-all duration-300 ease-in-out"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
@@ -270,7 +282,7 @@ const RoomDetails = () => {
 								</div>
 							</div>
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow hover:border hover:border-orange-400 my-8"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all border border-transparent hover:border hover:border-orange-400 my-8 duration-300   ease-in-out"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
@@ -288,7 +300,7 @@ const RoomDetails = () => {
 					<div className="md:col-span-4">
 						<div className="sticky top-10 animate-fade-in">
 							<div
-								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow border-2 hover:border-orange-400"
+								className="bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all border-2 hover:border-orange-400 duration-300 ease-in-out"
 								style={{
 									background: "rgba(255, 255, 255, 0.1)",
 									backdropFilter: "blur(10px)",
@@ -384,6 +396,12 @@ const RoomDetails = () => {
 					</div>
 				</div>
 			</div>
+
+			{isPaymentPageLoading && (
+				<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+					<LoadingSpinner />
+				</div>
+			)}
 		</div>
 	);
 };

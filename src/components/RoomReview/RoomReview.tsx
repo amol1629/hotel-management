@@ -23,14 +23,12 @@ const RoomReview: FC<{ roomId: string }> = ({ roomId }) => {
 	if (typeof roomReviews === "undefined" && !isLoading)
 		throw new Error("Cannot fetch data");
 
-	console.log(roomReviews?.length);
-
 	return (
 		<div>
 			{roomReviews?.length == 0 ? (
-        <div className="text-sm text-center text-red-200 italic">
-          There are no reviews available for this room
-        </div>
+				<div className="text-sm text-center text-red-200 italic">
+					There are no reviews available for this room
+				</div>
 			) : (
 				<div className="flex flex-wrap gap-4">
 					{roomReviews &&

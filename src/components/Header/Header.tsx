@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useContext, useCallback } from "react";
+import { useContext, useCallback, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useSession } from "next-auth/react";
@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaTimes } from "react-icons/fa"; // Import the 'x' icon
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Header = () => {
 	const { darkTheme, setDarkTheme } = useContext(ThemeContext);
@@ -20,6 +21,22 @@ const Header = () => {
 
 	const [roomTypeFilter, setRoomTypeFilter] = useState("All");
 	const [searchQuery, setSearchQuery] = useState("");
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		const handleStart = () => setLoading(true);
+		const handleComplete = () => setLoading(false);
+
+		router.events?.on("routeChangeStart", handleStart);
+		router.events?.on("routeChangeComplete", handleComplete);
+		router.events?.on("routeChangeError", handleComplete);
+
+		return () => {
+			router.events?.off("routeChangeStart", handleStart);
+			router.events?.off("routeChangeComplete", handleComplete);
+			router.events?.off("routeChangeError", handleComplete);
+		};
+	}, [router]);
 
 	const handleRoomTypeChange = useCallback(
 		(event: ChangeEvent<HTMLSelectElement>) => {
@@ -65,13 +82,21 @@ const Header = () => {
 		<FaUserCircle className="cursor-pointer" />
 	);
 
+	console.log("User Image : ", session);
+
 	// Function to clear the search input
 	const clearSearch = () => {
 		setSearchQuery("");
 	};
 
 	return (
-		<header className="dark:sticky dark:top-0 dark:z-40  dark:bg-black dark:border dark:rounded-lg border-b border-b-white dark:border-white py-4 shadow-lg px-4 mx-auto text-xl flex flex-col md:flex-row items-center justify-between gap-4">
+		<header className="dark:sticky dark:top-0 dark:z-40 dark:bg-black dark:border dark:rounded-lg border-b border-b-white dark:border-white py-4 shadow-lg px-4 mx-auto text-xl flex flex-col md:flex-row items-center justify-between gap-4">
+			{loading && (
+				<div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md">
+					<div className="w-16 h-16 border-4 border-t-yellow-400 border-transparent rounded-full animate-spin"></div>
+				</div>
+			)}
+
 			<div className="f">
 				<Link
 					href="/"
@@ -79,7 +104,7 @@ const Header = () => {
 				>
 					<Image
 						alt="gallery"
-						className=" rounded-full h-16 w-16"
+						className="rounded-full h-16 w-16"
 						src="/images/main-logo.jpg"
 						width={40}
 						height={40}
@@ -90,76 +115,12 @@ const Header = () => {
 				</Link>
 			</div>
 
-			<div className="flex flex-wrap items-center justify-center gap-4 w-full md:w-auto">
-				<div className="text-sm w-full md:w-auto border border-white text-white bg-transparent rounded-xl px-2">
-					<select
-						value={roomTypeFilter}
-						onChange={handleRoomTypeChange}
-						className="bg-transparent w-full px-4 py-2 capitalize rounded leading-tight dark:bg-black focus:outline-none"
-					>
-						<option
-							className="bg-white text-black rounded-xl"
-							value="All"
-						>
-							All
-						</option>
-						<option
-							className="bg-white text-black rounded-xl"
-							value="Basic"
-						>
-							Basic
-						</option>
-						<option
-							className="bg-white text-black rounded-xl"
-							value="Luxury"
-						>
-							Luxury
-						</option>
-						<option
-							className="bg-white text-black rounded-xl"
-							value="Suite"
-						>
-							Suite
-						</option>
-					</select>
-				</div>
-
-				<div className="flex w-full md:w-auto border border-white text-white bg-transparent rounded-xl px-2 relative">
-					<input
-						type="text"
-						placeholder="Search rooms here..."
-						className="w-full px-4 py-2 rounded-lg bg-transparent dark:bg-black focus:outline-none text-sm placeholder:text-white dark:placeholder:text-white"
-						value={searchQuery}
-						onChange={handleSearchQueryChange}
-					/>
-					{searchQuery && (
-						<button
-							className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl text-red-500 hover:text-red-300 transition-all"
-							onClick={clearSearch}
-						>
-							<FaTimes /> {/* Clear button (x icon) */}
-						</button>
-					)}
-				</div>
-
-				<Tooltip title="Search" placement="top">
-					<button
-						className="text-white text-4xl"
-						type="button"
-						onClick={handleFilterClick}
-					>
-						<CiSearch />
-					</button>
-				</Tooltip>
-			</div>
-
 			<ul className="flex items-center justify-between w-full md:w-1/3 mt-4 md:mt-0">
 				{["Home", "Rooms", "Contact"].map((link) => (
 					<li
 						key={link}
 						className="text-white hover:underline hover:-translate-y-2 duration-500 transition-all"
 					>
-						{/* For the Home link, update it to go to root */}
 						<Link
 							href={
 								link === "Home" ? "/" : `/${link.toLowerCase()}`
@@ -171,19 +132,40 @@ const Header = () => {
 				))}
 
 				<li className="flex items-center">
-					<Link
-						href={
-							session?.user
-								? `/users/${session.user.id}`
-								: "/auth"
-						}
-					>
-						{session?.user ? (
-							userImage
-						) : (
-							<FaUserCircle className="text-white  border-2 border-white cursor-pointer" />
-						)}
-					</Link>
+					{session?.user ? (
+						// If user is logged in, show the profile dropdown
+						<div className="relative flex items-center rounded-full border-2 border-orange-600 p-1 cursor-pointer">
+							<Link href={`/users/${session.user.id}`}>
+								{session.user.image ? (
+									<Tooltip
+										title={session.user.name}
+										placement="top"
+									>
+										<Image
+											src={session.user.image}
+											alt={session.user.name!}
+											width={40}
+											height={40}
+											className="w-10 h-10 rounded-full border-2 hover:border-orange-400 transition"
+										/>
+									</Tooltip>
+								) : (
+									<div className="relative">
+										<FaUserCircle className="text-white text-3xl absolute opacity-50" />
+										<BsFillPersonFill className="text-white text-3xl" />
+									</div>
+								)}
+							</Link>
+						</div>
+					) : (
+						// If no user is logged in, show Login button
+						<Link
+							href="/auth"
+							className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition duration-300"
+						>
+							Login
+						</Link>
+					)}
 				</li>
 
 				<li className="ml-2">

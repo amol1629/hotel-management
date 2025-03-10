@@ -145,7 +145,7 @@ const TestimonialsSection: FC = () => {
 				>
 					{reviews?.map((review) => (
 						<SwiperSlide key={review?._id}>
-							<div className="dark:bg-gray-800 border mb-8 mx-16 bg-opacity-10 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow transform hover:scale-105 animate-fade-in-up duration-300 ease-in-out">
+							<div className="dark:bg-gray-800 border mb-8 my-8 mx-16 bg-opacity-10 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 animate-fade-in-up transition-all duration-300 ease-in-out">
 								{/* Testimonial Content */}
 								<div className="flex items-center mb-4">
 									{/* Guest Image */}

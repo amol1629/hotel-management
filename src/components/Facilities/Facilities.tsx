@@ -65,7 +65,7 @@ const Facilities: FC = () => {
 			{/* Content */}
 			<div className="relative z-20 max-w-6xl mx-auto text-center text-white">
 				<h1 className="text-3xl sm:text-4xl font-bold">
-					Our Best <span className="text-orange-500">Services</span>
+					Our  <span className="text-orange-500">Best Services</span>
 				</h1>
 
 				{/* Facilities Grid */}

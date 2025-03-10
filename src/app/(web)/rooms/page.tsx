@@ -8,6 +8,7 @@ import { getRooms } from "@/libs/apis";
 import { Room } from "@/models/room";
 import Search from "@/components/Search/Search";
 import RoomCard from "@/components/RoomCard/RoomCard";
+import LoadingSpinner from "../loading";
 const Rooms = () => {
 	const [roomTypeFilter, setRoomTypeFilter] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");
@@ -26,6 +27,8 @@ const Rooms = () => {
 	}
 
 	const { data, error, isLoading } = useSWR("get/hotelRooms", fetchData);
+
+	console.log("Rooms data : ", data);
 
 	if (error) throw new Error("Cannot fetch data");
 	if (typeof data === "undefined" && !isLoading)
@@ -52,8 +55,16 @@ const Rooms = () => {
 
 	const filteredRooms = filterRooms(data || []);
 
+	if (isLoading)
+		return (
+			<div className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-black bg-opacity-70 z-50">
+				<LoadingSpinner />
+			</div>
+		);
+
+
 	return (
-		<div className="container mx-auto pt-10 px-4 lg:px-0 w-full bg-black bg-opacity-40 backdrop-blur-lg rounded-xl">
+		<div className="min-h-screen mx-auto pt-10 px-4 lg:px-0 w-full bg-black bg-opacity-40 backdrop-blur-lg rounded-xl">
 			<div className="text-white px-8">
 				<p className="text-lg flex items-center">
 					<span className="font-bold italic">
@@ -86,7 +97,7 @@ const Rooms = () => {
 				</div>
 			)}
 
-			<div className="flex flex-wrap justify-center items-center mt-10 gap-6">
+			<div className="flex flex-wrap justify-center items-center mt-10 gap-6 w-full">
 				{filteredRooms.map((room) => (
 					<RoomCard key={room._id} room={room} />
 				))}

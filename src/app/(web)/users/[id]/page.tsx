@@ -21,7 +21,6 @@ import { formatDate } from "@/utils/formatDate";
 
 const UserDetails = () => {
 	const backgroundImageUrl = "/images/cover-image-2.png";
-
 	const params = useParams();
 	const userId = params?.id as string;
 
@@ -33,6 +32,7 @@ const UserDetails = () => {
 	const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 	const [ratingValue, setRatingValue] = useState<number | null>(0);
 	const [ratingText, setRatingText] = useState("");
+	const [isSigningOut, setIsSigningOut] = useState(false);
 
 	const toggleRatingModal = () => setIsRatingVisible((prev) => !prev);
 
@@ -71,6 +71,7 @@ const UserDetails = () => {
 		"/api/userbooking",
 		fetchUserBooking
 	);
+
 	const { data: userData, isLoading: loadingUserData } = useSWR(
 		"/api/users",
 		fetchUserData
@@ -78,125 +79,138 @@ const UserDetails = () => {
 
 	if (loadingUserData || !userData) return <LoadingSpinner />;
 
+	const handleSignOut = async () => {
+		setIsSigningOut(true);
+		try {
+			await signOut({ callbackUrl: "/" });
+		} finally {
+			setIsSigningOut(false);
+		}
+	};
+
 	return (
-		<div className="container mx-auto px-4 py-10">
-			<div className="grid md:grid-cols-12 gap-8">
-				<div className="md:col-span-4 lg:col-span-3">
-					<div className="border-2 border-yellow-400 bg-white/10 backdrop-blur-md shadow-xl rounded-3xl p-6">
-						{/* Blurred Background */}
-						<div
-							className="absolute inset-0 z-0 rounded-3xl"
-							style={{
-								backgroundImage: `url(${backgroundImageUrl})`,
-								backgroundSize: "cover",
-								backgroundPosition: "center",
-								backgroundRepeat: "no-repeat",
-								filter: "blur(6px)",
-								width: "100%",
-								height: "100%",
-							}}
-						></div>
+		<div className="">
+			<div
+				className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white p-8 relative"
+				style={{
+					backgroundImage: `url(${backgroundImageUrl})`,
+					backgroundSize: "cover",
+					backgroundPosition: "center",
+				}}
+			>
+				{/* Glassy Overlay for Entire Screen */}
+				<div className="absolute inset-0 backdrop-blur-md bg-black/50 z-0" />
 
-						{/* Dark Overlay */}
-						<div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-3xl"></div>
-
-						<div className="relative z-20">
-							<div className="relative z-20 w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg transition-transform transform hover:scale-105">
-								<Image
-									src={userData.image}
-									alt={userData.name}
-									width={128}
-									height={128}
-									className="rounded-full"
-								/>
+				<div className="max-w-7xl mx-auto relative z-10">
+					<div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+						<aside className="md:col-span-3">
+							<div className="bg-gray-800/50 rounded-3xl p-6 shadow-lg border border-gray-700/50 backdrop-blur-md">
+								<div className="relative">
+									<div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-purple-600">
+										<Image
+											src={userData?.image}
+											alt={userData?.name}
+											width={128}
+											height={128}
+											className="object-cover w-full h-full"
+										/>
+									</div>
+									<h2 className="text-2xl font-semibold text-center mb-2">
+										{userData.name}
+									</h2>
+									<p className="text-sm text-gray-400 text-center mb-4">
+										{userData?.about ?? "No bio provided."}
+									</p>
+									<p className="text-xs text-gray-500 text-center mb-4">
+										Joined:{" "}
+										{formatDate(
+											userData?._createdAt.split("T")[0]
+										)}
+									</p>
+									<button
+										onClick={handleSignOut}
+										className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-full transition-colors flex items-center justify-center"
+										disabled={isSigningOut}
+									>
+										{isSigningOut ? (
+											"Signing Out"
+										) : (
+											<>
+												<FaSignOutAlt className="inline mr-2" />{" "}
+												Sign Out
+											</>
+										)}
+									</button>
+								</div>
 							</div>
-							<h2 className="text-center text-xl text-white font-bold my-4">
-								{userData.name}
-							</h2>
-							<p className="text-center text-sm opacity-75">
-								{userData.about ?? ""}
-							</p>
-							<p className="text-center text-xs text-gray-300 mt-2">
-								Joined{" "}
-								{formatDate(userData._createdAt.split("T")[0])}
-							</p>
-							<button
-								onClick={() => signOut({ callbackUrl: "/" })}
-								className="w-full mt-4 bg-red-500 hover:bg-red-600 text-white py-2 rounded-3xl flex items-center justify-center transition"
-							>
-								<FaSignOutAlt className="mr-2" /> Sign Out
-							</button>
-						</div>
+						</aside>
+
+						<main className="md:col-span-9">
+							{userBookings && userBookings.length > 0 ? (
+								<div className="bg-gray-800/50 rounded-3xl p-6 shadow-lg border border-gray-700/50 backdrop-blur-md">
+									<nav className="flex justify-around mb-6 border-b border-gray-700 pb-4">
+										<button
+											onClick={() =>
+												setCurrentNav("bookings")
+											}
+											className={`px-4 py-2 rounded-full transition-colors ${
+												currentNav === "bookings"
+													? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-2 rounded-3xl flex items-center justify-center transition-all transform hover:scale-10"
+													: "hover:bg-gray-700 text-gray-300"
+											}`}
+										>
+											<BsJournalBookmarkFill className="inline mr-2" />{" "}
+											Bookings
+										</button>
+										<button
+											onClick={() =>
+												setCurrentNav("amount")
+											}
+											className={`px-4 py-2 rounded-full transition-colors ${
+												currentNav === "amount"
+													? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-2 rounded-3xl flex items-center justify-center transition-all transform hover:scale-10"
+													: "hover:bg-gray-700 text-gray-300"
+											}`}
+										>
+											<GiMoneyStack className="inline mr-2" />{" "}
+											Amount Spent
+										</button>
+									</nav>
+
+									{currentNav === "bookings" && (
+										<Table
+											bookingDetails={userBookings}
+											setRoomId={setRoomId}
+											toggleRatingModal={
+												toggleRatingModal
+											}
+										/>
+									)}
+									{currentNav === "amount" && (
+										<Chart userBookings={userBookings} />
+									)}
+								</div>
+							) : (
+								<p className="text-center text-gray-400 mt-8">
+									No bookings found.
+								</p>
+							)}
+						</main>
 					</div>
 				</div>
 
-				<div className="md:col-span-8 lg:col-span-9 bg-white/10 backdrop-blur-md shadow-xl rounded-3xl p-6 relative">
-					{/* Blurred Background */}
-					<div
-						className="absolute inset-0 z-0 rounded-3xl"
-						style={{
-							backgroundImage: `url(${backgroundImageUrl})`,
-							backgroundSize: "cover",
-							backgroundPosition: "center",
-							backgroundRepeat: "no-repeat",
-							filter: "blur(6px)",
-							width: "100%",
-							height: "100%",
-						}}
-					></div>
-
-					{/* Dark Overlay */}
-					<div className="absolute inset-0 bg-black bg-opacity-50 z-10 rounded-3xl"></div>
-
-					<nav className="relative z-20 flex justify-around py-3 mb-6 border-b border-gray-200">
-						<button
-							onClick={() => setCurrentNav("bookings")}
-							className={`px-4 py-2 rounded-3xl transition ${
-								currentNav === "bookings"
-									? "bg-purple-600 text-white"
-									: "hover:bg-blue-500/40 bg-blue-500/20 text-purple-100"
-							}`}
-						>
-							<BsJournalBookmarkFill className="inline mr-2" />{" "}
-							Bookings
-						</button>
-						<button
-							onClick={() => setCurrentNav("amount")}
-							className={`px-4 py-2 rounded-3xl transition ${
-								currentNav === "amount"
-									? "bg-purple-600 text-white"
-									: "hover:bg-blue-500/40 bg-blue-500/20 text-purple-100"
-							}`}
-						>
-							<GiMoneyStack className="inline mr-2" /> Amount
-							Spent
-						</button>
-					</nav>
-
-					{currentNav === "bookings" && userBookings && (
-						<Table
-							bookingDetails={userBookings}
-							setRoomId={setRoomId}
-							toggleRatingModal={toggleRatingModal}
-						/>
-					)}
-					{currentNav === "amount" && userBookings && (
-						<Chart userBookings={userBookings} />
-					)}
-				</div>
+				<RatingModal
+					isOpen={isRatingVisible}
+					ratingValue={ratingValue}
+					setRatingValue={setRatingValue}
+					ratingText={ratingText}
+					setRatingText={setRatingText}
+					isSubmittingReview={isSubmittingReview}
+					reviewSubmitHandler={reviewSubmitHandler}
+					toggleRatingModal={toggleRatingModal}
+				/>
+				<BackDrop isOpen={isRatingVisible} />
 			</div>
-
-			<RatingModal
-				isOpen={isRatingVisible}
-				ratingValue={ratingValue}
-				setRatingValue={setRatingValue}
-				ratingText={ratingText}
-				setRatingText={setRatingText}
-				isSubmittingReview={isSubmittingReview}
-				reviewSubmitHandler={reviewSubmitHandler}
-				toggleRatingModal={toggleRatingModal}
-			/>
-			<BackDrop isOpen={isRatingVisible} />
 		</div>
 	);
 };
