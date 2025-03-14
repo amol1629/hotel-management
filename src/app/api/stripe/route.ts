@@ -1,21 +1,21 @@
-import Stripe from 'stripe';
+import Stripe from "stripe";
 
-import { authOptions } from '@/libs/auth';
-import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
-import { getRoom } from '@/libs/apis';
+import { authOptions } from "@/libs/auth";
+import { getServerSession } from "next-auth";
+import { NextResponse } from "next/server";
+import { getRoom } from "@/libs/apis";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2023-08-16',
+	apiVersion: "2023-08-16",
 });
 
 type RequestData = {
-  checkinDate: string;
-  checkoutDate: string;
-  adults: number;
-  children: number;
-  numberOfDays: number;
-  hotelRoomSlug: string;
+	checkinDate: string;
+	checkoutDate: string;
+	adults: number;
+	children: number;
+	numberOfDays: number;
+	hotelRoomSlug: string;
 };
 
 export async function POST(req: Request) {
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
 				{
 					quantity: 1,
 					price_data: {
-						currency: "usd",
+						currency: "inr",
 						product_data: {
 							name: room.name,
 							images: room.images.map((image) => image.url),
